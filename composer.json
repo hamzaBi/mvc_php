@@ -1,0 +1,15 @@
+{
+    "name": "hamza/mvc",
+    "authors": [
+        {
+            "name":"Hamza BIYUZAN",
+            "email": "hamza.biyuzan@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
