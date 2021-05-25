@@ -13,16 +13,39 @@ use MongoDB\Driver\ReadConcern;
 
 class Application
 {
+    public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
-    public function __construct(){
-        $this->request = new Request();
-        $this->router = new Router($this->request);
+    public Response  $response;
 
+    public static Application $app;
+    public Controller $controller;
+    public function __construct($roopath){
+        self::$ROOT_DIR = $roopath;
+        $this->request = new Request();
+        $this->response = new Response();
+        $this->router = new Router($this->request, $this->response);
+        self::$app = $this;
     }
 
 
     public function run(){
-        $this->router->resolve();
+        echo $this->router->resolve();
+    }
+
+    /**
+     * @return Controller
+     */
+    public function getController(): Controller
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param Controller $controller
+     */
+    public function setController(Controller $controller): void
+    {
+        $this->controller = $controller;
     }
 }
